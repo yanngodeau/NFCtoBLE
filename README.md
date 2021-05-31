@@ -10,8 +10,6 @@ A simple way to connect an iOS device to a BLE peripheral by giving all essentia
 
 The iOS device uses the pairing key read from the NFC tag to locate the device to connect. Of course, the device must advertise the same ID.
 
-![diagram.jpg.jpeg](https://res.craft.do/user/full/6bb03934-1b0b-a3f9-108a-876f91d3ffe3/doc/DF9968E3-6E73-4628-A54F-4BEFC5C62D06/28E90D16-8DB8-4D10-AF3F-DC4AC0F0C0A6_2/diagram.jpg.jpeg)
-
 > Please be aware that this framework does not manage the configuration of your Bluetooth device. It is up to you to configure it properly to advertise the pairing key you want.
 
 ## Installation
