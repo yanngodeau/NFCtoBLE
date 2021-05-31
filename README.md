@@ -2,8 +2,8 @@
 
 A simple way to connect an iOS device to a BLE peripheral by giving all essential tools threw property wrapper.
 
-[![GitHub license](https://img.shields.io/github/license/yanngodeau/SimplyNFC)](https://github.com/yanngodeau/NFCtoBLE/blob/main/LICENSE)
-[![Platform](https://img.shields.io/badge/plateform-iOS-yellow)](https://github.com/yanngodeau/NFCtoBLE)
+[![GitHub license](https://img.shields.io/github/license/yanngodeau/SimplyNFC)](https://github.com/yanngodeau/iOS-NFCtoBLE/blob/main/LICENSE)
+[![Platform](https://img.shields.io/badge/plateform-iOS-yellow)](https://github.com/yanngodeau/iOS-NFCtoBLE)
 [![Swift](https://img.shields.io/badge/swift-5.1%2B-orange)](https://swift.org)
 
 ## Principle
@@ -160,7 +160,7 @@ connectedPeripheral?.onValueUpdated({ characteristicUUID, data in
 
 ## License
 
-SimplyNFC is distributed under the [MIT License](https://mit-license.org).
+NFCtoBLE is distributed under the [MIT License](https://mit-license.org).
 
 ## Author
 
