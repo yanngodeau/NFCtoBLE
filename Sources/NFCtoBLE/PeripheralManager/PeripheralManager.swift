@@ -39,6 +39,7 @@ public class PeripheralManager: NSObject {
             Logger.peripheralManager.info("State changed from '\(oldValue.localizedState)' to '\(self.state.localizedState)'")
         }
     }
+    public static var shared = PeripheralManager()
 
     public override init() {
         self.peripherals    = [Peripheral]()

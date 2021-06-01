@@ -21,7 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		B4D519642663B49E00E5C9CB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D519612663AE4E00E5C9CB /* Logger.swift */; };
+		B43B074B266594D100EC6385 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43B074A266594D100EC6385 /* Logger.swift */; };
 		OBJ_34 /* NFCTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* NFCTag.swift */; };
 		OBJ_35 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Peripheral.swift */; };
 		OBJ_36 /* PeripheralState.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* PeripheralState.swift */; };
@@ -69,7 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B4D519612663AE4E00E5C9CB /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		B43B074A266594D100EC6385 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		"NFCtoBLE::NFCtoBLE::Product" /* NFCtoBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NFCtoBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"NFCtoBLE::NFCtoBLETests::Product" /* NFCtoBLETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = NFCtoBLETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_11 /* Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripheral.swift; sourceTree = "<group>"; };
@@ -113,12 +113,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B4D519632663B41C00E5C9CB /* Utils */ = {
+		B43B0749266594D100EC6385 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				B4D519612663AE4E00E5C9CB /* Logger.swift */,
+				B43B074A266594D100EC6385 /* Logger.swift */,
 			);
-			path = Utils;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		OBJ_10 /* Peripheral */ = {
@@ -216,9 +216,9 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_9 /* NFCTag.swift */,
-				B4D519632663B41C00E5C9CB /* Utils */,
 				OBJ_10 /* Peripheral */,
 				OBJ_13 /* PeripheralManager */,
+				B43B0749266594D100EC6385 /* Utilities */,
 			);
 			name = NFCtoBLE;
 			path = Sources/NFCtoBLE;
@@ -370,7 +370,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_34 /* NFCTag.swift in Sources */,
-				B4D519642663B49E00E5C9CB /* Logger.swift in Sources */,
+				B43B074B266594D100EC6385 /* Logger.swift in Sources */,
 				OBJ_35 /* Peripheral.swift in Sources */,
 				OBJ_36 /* PeripheralState.swift in Sources */,
 				OBJ_37 /* PeripheralManager.swift in Sources */,

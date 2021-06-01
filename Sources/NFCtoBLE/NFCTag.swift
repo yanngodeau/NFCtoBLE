@@ -14,73 +14,71 @@ import OSLog
 /// Represents the NFC tag used to establish a connection with a BLE device.
 @propertyWrapper
 public class NFCTag<T: Codable> {
-    public typealias DidRead = (NFCManager, Result<CodableTag<T>, Error>) -> Void
+    public typealias DidRead = (NFCManager?, Result<CodableTag<T>, Error>) -> Void
 
     // MARK: - Properties
-    public var wrappedValue: T?
-    public var pairingKey: String = ""
-
-    private let nfcManager = NFCManager()
+    public var wrappedValue       : T?
+    public var pairingKey         : String?
+    private let nfcManager        = NFCManager()
     private var peripheralManager = PeripheralManager()
 
+    // MARK: - Initializer
     public init(pairingKey: String) {
-        self.pairingKey = pairingKey
+        self.pairingKey           = pairingKey
     }
 
     public init(wrappedValue value: T?, pairingKey: String?) {
-        self.wrappedValue = value
-        self.pairingKey = pairingKey ?? ""
+        self.wrappedValue         = value
+        self.pairingKey           = pairingKey
     }
 
     // MARK: - Functions
 
     /// Starts reading NFC tag
-    /// - Parameter didBecomeActive: Gets called when the manager has started reading
-    /// - Parameter didRead: Gets called when the manager detects NFC tag or occurs some errors
+    /// - Parameter didBecomeActive: Gets called when the nfc session  has started.
+    /// - Parameter didRead: Gets called when the manager has read NFC tag or occurs some errors.
     public func read(didBecomeActive: NFCManager.DidBecomeActive? = nil, didRead: @escaping DidRead) {
-        nfcManager.read { manager in
-            didBecomeActive?(manager)
-        } didDetect: { _, result in
+        nfcManager.read(didBecomeActive: didBecomeActive) { [weak self] _, result in
             switch result {
             case .failure(let error):
-                didRead(self.nfcManager, .failure(error))
+                didRead(self?.nfcManager, .failure(error))
             case .success:
                 guard let payload = try? result.get()?.records.first?.payload,
                       let decoded = try? JSONDecoder().decode(CodableTag<T>.self, from: payload) else {
                     return
                 }
-                self.pairingKey = decoded.pairingKey ?? ""
-                self.wrappedValue = decoded.value
-                didRead(self.nfcManager, .success(decoded))
+                self?.pairingKey = decoded.pairingKey
+                self?.wrappedValue = decoded.value
+
+                didRead(self?.nfcManager, .success(decoded))
             }
         }
     }
 
     /// Starts writing the `@NFCTag`  property as [CodableTag](x-source-tag://CodableTag) on NFC tag
-    /// - Parameter didBecomeActive: Gets called when the manager has started writing
-    /// - Parameter didWrite: Gets called when the manager detects NFC tag or occurs some errors
+    /// - Parameter didBecomeActive:  Gets called when the nfc session  has started.
+    /// - Parameter didWrite: Gets called when the manager has written NFC tag or occurs some errors.
     public func write(didBecomeActive: NFCManager.DidBecomeActive? = nil, didWrite: @escaping DidRead) {
         let codable = CodableTag<T>(pairingKey: self.pairingKey, value: self.wrappedValue)
+
         guard let data = try? JSONEncoder().encode(codable) else {
             return
         }
-        let payload = NFCNDEFPayload(
-          format: .unknown,
-          type: Data(),
-          identifier: Data(),
-          payload: data)
+
+        let payload = NFCNDEFPayload( format: .unknown,
+                                      type: Data(),
+                                      identifier: Data(),
+                                      payload: data)
         let message = NFCNDEFMessage(records: [payload])
 
-        nfcManager.write(message: message) { manager in
-            didBecomeActive?(manager)
-        } didDetect: { manager, result in
+        nfcManager.write(message: message, didBecomeActive: didBecomeActive) { manager, result in
             switch result {
             case .failure(let error):
-                didWrite(manager, .failure(error))
                 Logger.nfctag.error("Failed to write tag : \(error.localizedDescription)")
+                didWrite(manager, .failure(error))
             case .success:
-                didWrite(manager, .success(codable))
                 Logger.nfctag.error("Successfully write tag")
+                didWrite(manager, .success(codable))
             }
         }
     }
@@ -94,23 +92,22 @@ public class NFCTag<T: Codable> {
                               didBecomeActive: NFCManager.DidBecomeActive? = nil,
                               didRead: DidRead? = nil,
                               didConnect: @escaping DidConnect) {
-        nfcManager.read { manager in
-            didBecomeActive?(manager)
-        } didDetect: { _, result in
+        nfcManager.read(didBecomeActive: didBecomeActive) { [weak self] _, result in
             switch result {
             case .failure(let error):
-                Logger.nfctag.error("Failed to read tag : \(error.localizedDescription)")
-                didRead?(self.nfcManager, .failure(error))
+                Logger.nfctag.error("Failed to read tag: \(error.localizedDescription)")
+                didRead?(self?.nfcManager, .failure(error))
             case .success:
                 guard let payload = try? result.get()?.records.first?.payload,
-                      let decoded = try? JSONDecoder().decode(CodableTag<T>.self, from: payload) else {
+                      let decoded = try? JSONDecoder().decode(CodableTag<T>.self, from: payload),
+                      decoded.pairingKey == nil else {
                     return
                 }
-                self.pairingKey = decoded.pairingKey ?? ""
-                self.wrappedValue = decoded.value
+                self?.pairingKey = decoded.pairingKey!
+                self?.wrappedValue = decoded.value
                 Logger.nfctag.info("Successfully read tag")
-                didRead?(self.nfcManager, .success(decoded))
-                self.connectToPeripheral(withPairingKey: self.pairingKey,
+                didRead?(self?.nfcManager, .success(decoded))
+                self?.connectToPeripheral(withPairingKey: decoded.pairingKey!,
                                          withServices: services,
                                          didConnect: didConnect)
             }
@@ -118,14 +115,13 @@ public class NFCTag<T: Codable> {
     }
 
     // MARK: - Private functions
-
     private func connectToPeripheral(withPairingKey pairingKey: String,
                                      withServices services: [CBUUID]?,
                                      didConnect: @escaping DidConnect) {
-        peripheralManager.scanForPeripherals { manager, discoveredPeripheral, discoveredPairingKey in
+        peripheralManager.scanForPeripherals { [weak self] manager, discoveredPeripheral, discoveredPairingKey in
             if pairingKey == discoveredPairingKey {
-                self.peripheralManager.stopScan()
-                self.peripheralManager.connect(to: discoveredPeripheral, withServices: services) { _, result in
+                self?.peripheralManager.stopScan()
+                self?.peripheralManager.connect(to: discoveredPeripheral, withServices: services) { _, result in
                     switch result {
                     case .failure(let error):
                         Logger.nfctag.error("Failed to connect to a peripheral \(error.localizedDescription)")
@@ -138,7 +134,6 @@ public class NFCTag<T: Codable> {
             }
         }
     }
-
 }
 
 /// - Tag: CodableTag
@@ -146,7 +141,7 @@ public struct CodableTag<T: Codable>: Codable {
     var pairingKey: String?
     var value: T?
 
-    init(pairingKey: String, value: T? = nil) {
+    init(pairingKey: String?, value: T? = nil) {
         self.pairingKey = pairingKey
         self.value = value
     }
