@@ -36,7 +36,9 @@ public class PeripheralManager: NSObject {
     /// The [state](x-source-tag://PeripheralManagerState) of the peripheral manager.
     var state: PeripheralManagerState {
         didSet {
-            Logger.peripheralManager.info("State changed from '\(oldValue.localizedState)' to '\(self.state.localizedState)'")
+            Logger.peripheralManager.info("""
+                State changed from '\(oldValue.localizedState)' to '\(self.state.localizedState)'
+                """)
         }
     }
     public static var shared = PeripheralManager()
@@ -162,7 +164,9 @@ extension PeripheralManager: CBCentralManagerDelegate {
                                didDisconnectPeripheral peripheral: CBPeripheral,
                                error: Error?) {
         if self.latestActivePeripheral?.cbPeripheral != peripheral {
-            Logger.peripheralManager.error("Disconnected from a device that was not the lastest one known as connected.")
+            Logger.peripheralManager.error("""
+                Disconnected from a device that was not the lastest one known as connected.
+                """)
         } else {
             Logger.peripheralManager.info("""
                 Disconnected from peripheral \(String(describing: peripheral.name))

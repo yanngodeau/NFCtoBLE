@@ -14,7 +14,7 @@ import OSLog
 /// Represents the NFC tag used to establish a connection with a BLE device.
 @propertyWrapper
 public class NFCTag<T: Codable> {
-    public typealias DidRead = (NFCManager?, Result<CodableTag<T>, Error>) -> Void
+    public typealias DidRead = (NFCManager, Result<CodableTag<T>, Error>) -> Void
 
     // MARK: - Properties
     public var wrappedValue       : T?
@@ -39,18 +39,19 @@ public class NFCTag<T: Codable> {
     /// - Parameter didRead: Gets called when the manager has read NFC tag or occurs some errors.
     public func read(didBecomeActive: NFCManager.DidBecomeActive? = nil, didRead: @escaping DidRead) {
         nfcManager.read(didBecomeActive: didBecomeActive) { [weak self] _, result in
+            guard let self = self else { return }
             switch result {
             case .failure(let error):
-                didRead(self?.nfcManager, .failure(error))
+                didRead(self.nfcManager, .failure(error))
             case .success:
                 guard let payload = try? result.get()?.records.first?.payload,
                       let decoded = try? JSONDecoder().decode(CodableTag<T>.self, from: payload) else {
                     return
                 }
-                self?.pairingKey = decoded.pairingKey
-                self?.wrappedValue = decoded.value
+                self.pairingKey = decoded.pairingKey
+                self.wrappedValue = decoded.value
 
-                didRead(self?.nfcManager, .success(decoded))
+                didRead(self.nfcManager, .success(decoded))
             }
         }
     }
@@ -93,21 +94,22 @@ public class NFCTag<T: Codable> {
                               didRead: DidRead? = nil,
                               didConnect: @escaping DidConnect) {
         nfcManager.read(didBecomeActive: didBecomeActive) { [weak self] _, result in
+            guard let self = self else { return }
             switch result {
             case .failure(let error):
                 Logger.nfctag.error("Failed to read tag: \(error.localizedDescription)")
-                didRead?(self?.nfcManager, .failure(error))
+                didRead?(self.nfcManager, .failure(error))
             case .success:
                 guard let payload = try? result.get()?.records.first?.payload,
                       let decoded = try? JSONDecoder().decode(CodableTag<T>.self, from: payload),
                       decoded.pairingKey == nil else {
                     return
                 }
-                self?.pairingKey = decoded.pairingKey!
-                self?.wrappedValue = decoded.value
+                self.pairingKey = decoded.pairingKey!
+                self.wrappedValue = decoded.value
                 Logger.nfctag.info("Successfully read tag")
-                didRead?(self?.nfcManager, .success(decoded))
-                self?.connectToPeripheral(withPairingKey: decoded.pairingKey!,
+                didRead?(self.nfcManager, .success(decoded))
+                self.connectToPeripheral(withPairingKey: decoded.pairingKey!,
                                          withServices: services,
                                          didConnect: didConnect)
             }

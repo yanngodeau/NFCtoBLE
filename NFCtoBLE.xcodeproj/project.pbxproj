@@ -21,43 +21,25 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		B43B074B266594D100EC6385 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43B074A266594D100EC6385 /* Logger.swift */; };
-		OBJ_34 /* NFCTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* NFCTag.swift */; };
-		OBJ_35 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Peripheral.swift */; };
-		OBJ_36 /* PeripheralState.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* PeripheralState.swift */; };
-		OBJ_37 /* PeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* PeripheralManager.swift */; };
-		OBJ_38 /* PeripheralManagerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* PeripheralManagerState.swift */; };
-		OBJ_40 /* SimplyNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SimplyNFC::SimplyNFC::Product" /* SimplyNFC.framework */; platformFilter = ios; };
-		OBJ_48 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		B43B074B266594D100EC6385 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43B074A266594D100EC6385 /* Logger.swift */; platformFilter = ios; };
+		B43E7038266A54D200E866D5 /* SimplyNFC in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = B43E7037266A54D200E866D5 /* SimplyNFC */; };
+		OBJ_34 /* NFCTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* NFCTag.swift */; platformFilter = ios; };
+		OBJ_35 /* Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Peripheral.swift */; platformFilter = ios; };
+		OBJ_36 /* PeripheralState.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* PeripheralState.swift */; platformFilter = ios; };
+		OBJ_37 /* PeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* PeripheralManager.swift */; platformFilter = ios; };
+		OBJ_38 /* PeripheralManagerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* PeripheralManagerState.swift */; platformFilter = ios; };
+		OBJ_48 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; platformFilter = ios; };
 		OBJ_59 /* NFCtoBLETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* NFCtoBLETests.swift */; };
-		OBJ_61 /* NFCtoBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "NFCtoBLE::NFCtoBLE::Product" /* NFCtoBLE.framework */; };
-		OBJ_62 /* SimplyNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SimplyNFC::SimplyNFC::Product" /* SimplyNFC.framework */; };
-		OBJ_69 /* NFCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* NFCError.swift */; };
-		OBJ_70 /* NFCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* NFCManager.swift */; };
-		OBJ_77 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* Package.swift */; };
+		OBJ_61 /* NFCtoBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "NFCtoBLE::NFCtoBLE::Product" /* NFCtoBLE.framework */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B4FC6936266160DB00C8D75F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SimplyNFC::SimplyNFC";
-			remoteInfo = SimplyNFC;
-		};
 		B4FC6937266160DC00C8D75F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "NFCtoBLE::NFCtoBLE";
 			remoteInfo = NFCtoBLE;
-		};
-		B4FC6938266160DC00C8D75F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "SimplyNFC::SimplyNFC";
-			remoteInfo = SimplyNFC;
 		};
 		B4FC6939266160DD00C8D75F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -82,7 +64,6 @@
 		OBJ_24 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = /Users/yanngodeau/Dev/NFCtoBLE/.build/checkouts/SimplyNFC/Package.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* NFCTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCTag.swift; sourceTree = "<group>"; };
-		"SimplyNFC::SimplyNFC::Product" /* SimplyNFC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SimplyNFC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_40 /* SimplyNFC.framework in Frameworks */,
+				B43E7038266A54D200E866D5 /* SimplyNFC in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,14 +80,6 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_61 /* NFCtoBLE.framework in Frameworks */,
-				OBJ_62 /* SimplyNFC.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_71 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 0;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,7 +161,6 @@
 			children = (
 				"NFCtoBLE::NFCtoBLE::Product" /* NFCtoBLE.framework */,
 				"NFCtoBLE::NFCtoBLETests::Product" /* NFCtoBLETests.xctest */,
-				"SimplyNFC::SimplyNFC::Product" /* SimplyNFC.framework */,
 			);
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -238,10 +210,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_41 /* PBXTargetDependency */,
+				B43E703A266A54E100E866D5 /* PBXTargetDependency */,
 			);
 			name = NFCtoBLE;
 			packageProductDependencies = (
+				B43E7037266A54D200E866D5 /* SimplyNFC */,
 			);
 			productName = NFCtoBLE;
 			productReference = "NFCtoBLE::NFCtoBLE::Product" /* NFCtoBLE.framework */;
@@ -258,7 +231,6 @@
 			);
 			dependencies = (
 				OBJ_63 /* PBXTargetDependency */,
-				OBJ_64 /* PBXTargetDependency */,
 			);
 			name = NFCtoBLETests;
 			productName = NFCtoBLETests;
@@ -279,36 +251,6 @@
 			productName = NFCtoBLEPackageDescription;
 			productType = "com.apple.product-type.framework";
 		};
-		"SimplyNFC::SimplyNFC" /* SimplyNFC */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_65 /* Build configuration list for PBXNativeTarget "SimplyNFC" */;
-			buildPhases = (
-				OBJ_68 /* Sources */,
-				OBJ_71 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SimplyNFC;
-			productName = SimplyNFC;
-			productReference = "SimplyNFC::SimplyNFC::Product" /* SimplyNFC.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		"SimplyNFC::SwiftPMPackageDescription" /* SimplyNFCPackageDescription */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_73 /* Build configuration list for PBXNativeTarget "SimplyNFCPackageDescription" */;
-			buildPhases = (
-				OBJ_76 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SimplyNFCPackageDescription;
-			productName = SimplyNFCPackageDescription;
-			productType = "com.apple.product-type.framework";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -327,7 +269,7 @@
 			);
 			mainGroup = OBJ_5;
 			packageReferences = (
-				B4D5195C2663A01C00E5C9CB /* XCRemoteSwiftPackageReference "IOS-CoreBluetooth-Mock" */,
+				B43E7036266A54D200E866D5 /* XCRemoteSwiftPackageReference "SimplyNFC" */,
 			);
 			productRefGroup = OBJ_25 /* Products */;
 			projectDirPath = "";
@@ -337,8 +279,6 @@
 				"NFCtoBLE::SwiftPMPackageDescription" /* NFCtoBLEPackageDescription */,
 				"NFCtoBLE::NFCtoBLEPackageTests::ProductTarget" /* NFCtoBLEPackageTests */,
 				"NFCtoBLE::NFCtoBLETests" /* NFCtoBLETests */,
-				"SimplyNFC::SimplyNFC" /* SimplyNFC */,
-				"SimplyNFC::SwiftPMPackageDescription" /* SimplyNFCPackageDescription */,
 			);
 		};
 /* End PBXProject section */
@@ -394,31 +334,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_68 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_69 /* NFCError.swift in Sources */,
-				OBJ_70 /* NFCManager.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		OBJ_76 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 0;
-			files = (
-				OBJ_77 /* Package.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		OBJ_41 /* PBXTargetDependency */ = {
+		B43E703A266A54E100E866D5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
-			target = "SimplyNFC::SimplyNFC" /* SimplyNFC */;
-			targetProxy = B4FC6936266160DB00C8D75F /* PBXContainerItemProxy */;
+			productRef = B43E7039266A54E100E866D5 /* SimplyNFC */;
 		};
 		OBJ_53 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -427,13 +349,9 @@
 		};
 		OBJ_63 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = "NFCtoBLE::NFCtoBLE" /* NFCtoBLE */;
 			targetProxy = B4FC6937266160DC00C8D75F /* PBXContainerItemProxy */;
-		};
-		OBJ_64 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = "SimplyNFC::SimplyNFC" /* SimplyNFC */;
-			targetProxy = B4FC6938266160DC00C8D75F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -656,88 +574,6 @@
 			};
 			name = Release;
 		};
-		OBJ_66 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = NFCtoBLE.xcodeproj/SimplyNFC_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = SimplyNFC;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = SimplyNFC;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Debug;
-		};
-		OBJ_67 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = NFCtoBLE.xcodeproj/SimplyNFC_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_CFLAGS = "$(inherited)";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = SimplyNFC;
-				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = SimplyNFC;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Release;
-		};
-		OBJ_74 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk -package-description-version 5.3.0";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		OBJ_75 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk -package-description-version 5.3.0";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -786,36 +622,31 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		OBJ_65 /* Build configuration list for PBXNativeTarget "SimplyNFC" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_66 /* Debug */,
-				OBJ_67 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		OBJ_73 /* Build configuration list for PBXNativeTarget "SimplyNFCPackageDescription" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				OBJ_74 /* Debug */,
-				OBJ_75 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B4D5195C2663A01C00E5C9CB /* XCRemoteSwiftPackageReference "IOS-CoreBluetooth-Mock" */ = {
+		B43E7036266A54D200E866D5 /* XCRemoteSwiftPackageReference "SimplyNFC" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/NordicSemiconductor/IOS-CoreBluetooth-Mock";
+			repositoryURL = "https://github.com/yanngodeau/SimplyNFC";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.12.1;
+				minimumVersion = 1.0.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B43E7037266A54D200E866D5 /* SimplyNFC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B43E7036266A54D200E866D5 /* XCRemoteSwiftPackageReference "SimplyNFC" */;
+			productName = SimplyNFC;
+		};
+		B43E7039266A54E100E866D5 /* SimplyNFC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B43E7036266A54D200E866D5 /* XCRemoteSwiftPackageReference "SimplyNFC" */;
+			productName = SimplyNFC;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = OBJ_1 /* Project object */;
 }
