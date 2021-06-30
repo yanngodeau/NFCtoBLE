@@ -17,8 +17,8 @@ public class NFCTag<T: Codable> {
     public typealias DidRead = (NFCManager, Result<CodableTag<T>, Error>) -> Void
 
     // MARK: - Properties
-    public var wrappedValue       : T?
-    public var pairingKey         : String?
+    public var wrappedValue: T?
+    public var pairingKey: String?
     private let nfcManager        = NFCManager()
     private var peripheralManager = PeripheralManager()
 
@@ -101,15 +101,21 @@ public class NFCTag<T: Codable> {
                 didRead?(self.nfcManager, .failure(error))
             case .success:
                 guard let payload = try? result.get()?.records.first?.payload,
-                      let decoded = try? JSONDecoder().decode(CodableTag<T>.self, from: payload),
-                      decoded.pairingKey == nil else {
+                      let decoded = try? JSONDecoder().decode(CodableTag<T>.self, from: payload) else {
+                    Logger.nfctag.error("Failed to connect to peripheral: unable to decode payload")
+                    didRead?(self.nfcManager, .failure(TagError.decodingError))
                     return
                 }
-                self.pairingKey = decoded.pairingKey!
+                guard let pairingKey = decoded.pairingKey else {
+                    Logger.nfctag.error("Failed to connect to peripheral: nil pairing key found")
+                    didRead?(self.nfcManager, .failure(TagError.nilPairingKey))
+                    return
+                }
+                self.pairingKey = pairingKey
                 self.wrappedValue = decoded.value
                 Logger.nfctag.info("Successfully read tag")
                 didRead?(self.nfcManager, .success(decoded))
-                self.connectToPeripheral(withPairingKey: decoded.pairingKey!,
+                self.connectToPeripheral(withPairingKey: pairingKey,
                                          withServices: services,
                                          didConnect: didConnect)
             }
@@ -136,6 +142,11 @@ public class NFCTag<T: Codable> {
             }
         }
     }
+}
+
+public enum TagError: Error {
+    case nilPairingKey
+    case decodingError
 }
 
 /// - Tag: CodableTag
