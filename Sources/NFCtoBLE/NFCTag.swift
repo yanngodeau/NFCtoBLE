@@ -19,8 +19,10 @@ public class NFCTag<T: Codable> {
     // MARK: - Properties
     public var wrappedValue: T?
     public var pairingKey: String?
-    private let nfcManager        = NFCManager()
-    private var peripheralManager = PeripheralManager()
+
+    private var connectedPeripheral: Peripheral?
+    private let nfcManager         = NFCManager()
+    private var peripheralManager  = PeripheralManager()
 
     // MARK: - Initializer
     public init(pairingKey: String) {
@@ -122,6 +124,15 @@ public class NFCTag<T: Codable> {
         }
     }
 
+    public func disconnect(didDisconnect: @escaping () -> Void) {
+        guard let peripheral = self.connectedPeripheral else {
+            return
+        }
+        peripheralManager.disconnect(from: peripheral)
+        self.connectedPeripheral = nil
+        didDisconnect()
+    }
+
     // MARK: - Private functions
     private func connectToPeripheral(withPairingKey pairingKey: String,
                                      withServices services: [CBUUID]?,
@@ -136,6 +147,7 @@ public class NFCTag<T: Codable> {
                         didConnect(manager, .failure(error))
                     case .success:
                         Logger.nfctag.info("Connected to peripheral \(discoveredPeripheral.name)")
+                        self?.connectedPeripheral = discoveredPeripheral
                         didConnect(manager, .success(discoveredPeripheral))
                     }
                 }
