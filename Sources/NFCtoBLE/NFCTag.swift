@@ -126,6 +126,7 @@ public class NFCTag<T: Codable> {
 
     public func disconnect(didDisconnect: @escaping () -> Void) {
         guard let peripheral = self.connectedPeripheral else {
+            didDisconnect()
             return
         }
         peripheralManager.disconnect(from: peripheral)
